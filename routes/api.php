@@ -32,7 +32,6 @@ Route::group(['middleware' => 'api-header'], function () {
     // as users at that point have not been authenticated yet
     // Therefore the jwtMiddleware will be exclusive of them
     Route::post('user/login', 'Api\UserController@login');
-    Route::post('user/register', 'Api\UserController@register');
 });
 Route::get('task/complete', 'Api\TaskController@complete');
 Route::get('student/delete_event', 'Api\StudentController@deleteEvent');

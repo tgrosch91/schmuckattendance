@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Import from './components/Import';
-import Register from './components/Register';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import ImportList from './components/ImportList';
@@ -29,61 +28,61 @@ export default class Index extends Component {
     }
   }
 
-
-  _registerUser = (name, email, password) => {
-    $("#email-login-btn")
-      .attr("disabled", "disabled")
-      .html(
-        '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>'
-      );
-
-    var formData = new FormData();
-    formData.append("password", password);
-    formData.append("email", email);
-    formData.append("name", name);
-
-    axios
-      .post("/api/user/register", formData)
-      .then(response => {
-        console.log(response);
-        return response;
-      })
-      .then(json => {
-        if (json.data.success) {
-          alert(`Registration Successful!`);
-
-          let userData = {
-            name: json.data.data.name,
-            id: json.data.data.id,
-            email: json.data.data.email,
-            auth_token: json.data.data.auth_token,
-            timestamp: new Date().toString()
-          };
-          let appState = {
-            isLoggedIn: true,
-            user: userData
-          };
-          // save app state with user date in local storage
-          localStorage["appState"] = JSON.stringify(appState);
-          this.setState({
-            isLoggedIn: appState.isLoggedIn,
-            user: appState.user
-          });
-        } else {
-          alert(`Registration Failed!`);
-          $("#email-login-btn")
-            .removeAttr("disabled")
-            .html("Register");
-        }
-      })
-      .catch(error => {
-        alert("An Error Occured!" + error);
-        console.log(`${formData} ${error}`);
-        $("#email-login-btn")
-          .removeAttr("disabled")
-          .html("Register");
-      });
-  };
+  // 
+  // _registerUser = (name, email, password) => {
+  //   $("#email-login-btn")
+  //     .attr("disabled", "disabled")
+  //     .html(
+  //       '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>'
+  //     );
+  //
+  //   var formData = new FormData();
+  //   formData.append("password", password);
+  //   formData.append("email", email);
+  //   formData.append("name", name);
+  //
+  //   axios
+  //     .post("/api/user/register", formData)
+  //     .then(response => {
+  //       console.log(response);
+  //       return response;
+  //     })
+  //     .then(json => {
+  //       if (json.data.success) {
+  //         alert(`Registration Successful!`);
+  //
+  //         let userData = {
+  //           name: json.data.data.name,
+  //           id: json.data.data.id,
+  //           email: json.data.data.email,
+  //           auth_token: json.data.data.auth_token,
+  //           timestamp: new Date().toString()
+  //         };
+  //         let appState = {
+  //           isLoggedIn: true,
+  //           user: userData
+  //         };
+  //         // save app state with user date in local storage
+  //         localStorage["appState"] = JSON.stringify(appState);
+  //         this.setState({
+  //           isLoggedIn: appState.isLoggedIn,
+  //           user: appState.user
+  //         });
+  //       } else {
+  //         alert(`Registration Failed!`);
+  //         $("#email-login-btn")
+  //           .removeAttr("disabled")
+  //           .html("Register");
+  //       }
+  //     })
+  //     .catch(error => {
+  //       alert("An Error Occured!" + error);
+  //       console.log(`${formData} ${error}`);
+  //       $("#email-login-btn")
+  //         .removeAttr("disabled")
+  //         .html("Register");
+  //     });
+  // };
 
   _loginUser = (email, password) => {
     $("#login-form button")
@@ -153,7 +152,6 @@ export default class Index extends Component {
               <Router>
                 <div>
                   <NavBar logoutUser={this._logoutUser}/>
-                    <Route path="/register" exact render={(props) => <Register {...props} registerUser={this._registerUser} />}/>
                     <Route path="/login" exact render={(props) => <Login {...props} loginUser={this._loginUser} />}/>
                     {this.state.isLoggedIn &&
                       <div>
