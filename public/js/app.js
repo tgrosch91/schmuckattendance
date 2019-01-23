@@ -100760,6 +100760,7 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Checkbox"], {
         key: student.id,
         checked: this.state.checked,
+        autoComplete: "off",
         onChange: this.handleChange
       }, student.student_id, " (", student.event_count, ") Language: ", student.language);
     }
@@ -100853,9 +100854,13 @@ function (_Component) {
           letter: this.props.type.value
         }
       }).then(function (response) {
+        _this2.setState({
+          selectedStudents: []
+        });
+
         _this2.props.refreshStudents(_this2.props.type);
 
-        console.log(response); // after this use a callback function to tell parent function to reload this particular task list
+        console.log(response, _this2.state); // after this use a callback function to tell parent function to reload this particular task list
       }).catch(function (errors) {
         console.log(errors);
       });
@@ -100886,6 +100891,7 @@ function (_Component) {
       if (students.length) {
         var items = students.map(function (student) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TaskItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            key: student.id,
             addStudent: _this3.addStudent,
             removeStudent: _this3.removeStudent,
             student: student
@@ -100897,11 +100903,33 @@ function (_Component) {
       }
     }
   }, {
+    key: "getStudentTable",
+    value: function getStudentTable(students) {
+      if (students.length) {
+        var items = students.map(function (student) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+            style: {
+              "paddingTop": "5px;"
+            }
+          }, student.student_id));
+        });
+        return items;
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "No students need to receive this letter");
+      }
+    }
+  }, {
     key: "render",
     // Take each student that is given, and knowing the type prop send that
     // through to mark that particular letter type as sent
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, this.props.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["FormGroup"], null, this.getStudentList(this.props.students)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, this.props.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["FormGroup"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-xs-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-xs-6"
+      }, this.getStudentList(this.props.students)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-xs-6"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.getStudentTable(this.props.students)))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
         onClick: this.submitStudentLetters,
         bsStyle: "primary"
       }, "Update"));

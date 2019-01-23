@@ -24,7 +24,7 @@ export default class TaskItem extends Component {
    render() {
      const student = this.props.student;
     return (
-      <Checkbox key={student.id} checked={this.state.checked} onChange={this.handleChange}>
+      <Checkbox key={student.id} checked={this.state.checked} autoComplete="off" onChange={this.handleChange}>
       {student.student_id} ({student.event_count}) Language: {student.language}
       </Checkbox>
     );

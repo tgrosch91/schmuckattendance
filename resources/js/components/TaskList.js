@@ -20,8 +20,11 @@ export default class TaskList extends Component {
         letter: this.props.type.value
       }
     }).then((response) => {
+      this.setState({
+        selectedStudents: []
+      })
       this.props.refreshStudents(this.props.type);
-      console.log(response);
+      console.log(response, this.state);
       // after this use a callback function to tell parent function to reload this particular task list
     }).catch(errors =>{
       console.log(errors);
@@ -48,7 +51,22 @@ export default class TaskList extends Component {
     if(students.length){
       let items = students.map(student => {
         return (
-          <TaskItem addStudent={this.addStudent} removeStudent={this.removeStudent} student={student}/>
+          <TaskItem key={student.id} addStudent={this.addStudent} removeStudent={this.removeStudent} student={student}/>
+        )
+      });
+      return items;
+    }else{
+      return (<div>No students need to receive this letter</div>);
+    }
+  };
+
+  getStudentTable(students){
+    if(students.length){
+      let items = students.map(student => {
+        return (
+          <tr>
+            <td style={{"paddingTop":"5px;"}}>{student.student_id}</td>
+          </tr>
         )
       });
       return items;
@@ -64,7 +82,18 @@ export default class TaskList extends Component {
       <div>
       <h5>{this.props.title}</h5>
       <FormGroup>
-      {this.getStudentList(this.props.students)}
+        <div className="col-xs-12">
+          <div className="col-xs-6">
+            {this.getStudentList(this.props.students)}
+          </div>
+          <div className="col-xs-6">
+            <table>
+              <tbody>
+              {this.getStudentTable(this.props.students)}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </FormGroup>
       <Button onClick={this.submitStudentLetters} bsStyle="primary">Update</Button>
       </div>
