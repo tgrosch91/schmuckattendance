@@ -21,6 +21,7 @@ export default class NavBar extends Component {
         <Navbar.Collapse>
           <Nav style={{display:"flex", flexDirection:"row"}}>
             <NavItem href="/login">Login</NavItem>
+          <NavItem href="/register">Register</NavItem>
             <Button onClick={this.props.logoutUser}> Log Out</Button>
           </Nav>
           <Nav style={{display:"flex", flexDirection:"row"}} pullRight>
