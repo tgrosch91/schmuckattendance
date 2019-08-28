@@ -153,7 +153,6 @@ export default class Index extends Component {
               <Router>
                 <div>
                   <NavBar logoutUser={this._logoutUser}/>
-                    <Route path="/register" exact render={(props) => <Register {...props} registerUser={this._registerUser} />} />
                     <Route path="/login" exact render={(props) => <Login {...props} loginUser={this._loginUser} />}/>
                     {this.state.isLoggedIn &&
                       <div>
