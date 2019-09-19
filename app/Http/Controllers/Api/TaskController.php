@@ -79,7 +79,15 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $students = $this->eventService->getStudentsNeeding($id);
+        switch($id){
+          case 8:
+          case 9:
+            $students = $this->eventService->getStudentsConsecutiveDays($id);
+          break;
+          default:
+            $students = $this->eventService->getStudentsNeeding($id);
+          break;
+        }
         return response()->json($students);
     }
 

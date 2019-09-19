@@ -99684,6 +99684,12 @@ function (_Component) {
       }, {
         value: 7,
         label: '15 Tardies/Early Dismissals'
+      }, {
+        value: 8,
+        label: '3 Consecutive Absences'
+      }, {
+        value: 9,
+        label: '10 Consecutive Absences'
       }];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"

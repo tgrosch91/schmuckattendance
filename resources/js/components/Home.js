@@ -74,7 +74,9 @@ export default class Home extends Component {
       { value: 4, label: '10 Absences' },
       { value: 5, label: '5 Tardies/Early Dismissals' },
       { value: 6, label: '10 Tardies/Early Dismissals' },
-      { value: 7, label: '15 Tardies/Early Dismissals' }
+      { value: 7, label: '15 Tardies/Early Dismissals' },
+      { value: 8, label: '3 Consecutive Absences' },
+      { value: 9, label: '10 Consecutive Absences' }
     ];
         return (
             <div className="container">

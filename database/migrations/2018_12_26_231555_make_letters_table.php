@@ -57,6 +57,16 @@ class MakeLettersTable extends Migration
                 'count' => 15,
                 'type' => 2
             ),
+            array(
+                'name' => 'Three Consecutive Days Absent',
+                'count' => 3,
+                'type' => 1
+            ),
+            array(
+                'name' => 'Ten Consecutive Days Absent',
+                'count' => 10,
+                'type' => 1
+            ),
           )
         );
     }
