@@ -52,6 +52,7 @@ export default class Import extends Component {
        { value: 1, label: 'Absent' },
        { value: 2, label: 'Tardy' },
        { value: 3, label: 'Early Dismissal' },
+       { value: 4, label: 'Tardy to Class' },
      ];
     return (
       <div>

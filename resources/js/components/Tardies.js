@@ -28,7 +28,7 @@ export default class Tardies extends Component {
   }
   getEventDates(events){
     let dates = events.map(event => {
-      let label = event.event_type_id === 2 ? 'Tardy' : 'ED';
+      let label = 'Tardy';
       return (
         <li key = {event.id}>
           {label}: {event.event_date}
@@ -99,7 +99,7 @@ export default class Tardies extends Component {
       const fields = [
           { name: 'student_id', displayName: "Student Id", inputFilterable: true, sortable: true },
           { name: 'grade', displayName: "Grade", inputFilterable: true, exactFilterable: true, sortable: true },
-          { name: 'count', displayName: "Tardies/EDs", inputFilterable: true, exactFilterable: false, sortable: true, render: this.getCount },
+          { name: 'count', displayName: "Tardies", inputFilterable: true, exactFilterable: false, sortable: true, render: this.getCount },
           { name: 'letter_count', displayName: "Letters Sent", inputFilterable: true, exactFilterable: false, sortable: true, render: this.getLetterCount },
           { name: 'edit', displayName: "", inputFilterable: false, exactFilterable: false, sortable: false, render: this.getEditLink }
       ];
@@ -107,7 +107,7 @@ export default class Tardies extends Component {
         return (
             <div className="container" >
             <FilterableTable
-              namespace="Student Tardies and Early Dismissals"
+              namespace="Student Tardies"
               initialSort="student_id"
               data={data}
               fields={fields}

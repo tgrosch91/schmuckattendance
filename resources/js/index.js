@@ -6,6 +6,8 @@ import Profile from './components/Profile';
 import ImportList from './components/ImportList';
 import Absences from './components/Absences';
 import Tardies from './components/Tardies';
+import ClassTardies from './components/ClassTardies';
+import EarlyDismissals from './components/EarlyDismissals';
 import Home from './components/Home';
 import Register from './components/Register';
 import NavBar from './components/NavBar';
@@ -159,6 +161,8 @@ export default class Index extends Component {
                     <Route path="/" exact component={Home}/>
                     <Route path="/absences" exact component={Absences}/>
                     <Route path="/tardies" exact component={Tardies}/>
+                    <Route path="/class-tardies" exact component={ClassTardies} />
+                    <Route path="/early-dismissals" exact component={EarlyDismissals} />
                     <Route path="/imports" exact component={ImportList}/>
                     <Route path="/student/:id" exact component={Profile}/>
                     </div>

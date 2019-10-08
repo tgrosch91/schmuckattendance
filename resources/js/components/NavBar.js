@@ -25,7 +25,9 @@ export default class NavBar extends Component {
           </Nav>
           <Nav style={{display:"flex", flexDirection:"row"}} pullRight>
             <NavItem href="/absences">Absences</NavItem>
-            <NavItem href="/tardies">Tardies/ED</NavItem>
+            <NavItem href="/tardies">Tardies</NavItem>
+            <NavItem href="/early-dismissals">Early Dismissals</NavItem>
+            <NavItem href="/class-tardies">Class Tardies</NavItem>
             <NavItem href="/imports">Imports</NavItem>
           </Nav>
         </Navbar.Collapse>

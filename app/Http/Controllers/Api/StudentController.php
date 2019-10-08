@@ -55,18 +55,76 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getTardiesAndEDs()
+    public function getClassTardies()
     {
       $students = DB::table('students')
                       ->selectRaw('DISTINCT students.id')
                       ->join('events', 'students.id', '=', 'events.student_id')
-                      ->whereIn('events.event_type_id', [2,3])
+                      ->whereIn('events.event_type_id', [4])
                       ->get();
       $studentsArray = [];
 
       foreach($students as $key => $stud){
         $student = Student::find($stud->id);
-        $events = Student::find($stud->id)->event()->whereIn('event_type_id', [2,3])->get()->toArray();
+        $events = Student::find($stud->id)->event()->whereIn('event_type_id', [4])->get()->toArray();
+        $letters = $student->letters->toArray();
+        $studentArray = $student->toArray();
+        $studentArray['count'] = "*" . count($events) . "*";
+        $studentArray['event'] = $events;
+        $studentArray['letter_count'] = "-" . count($letters) . "-";
+        $studentArray['grade'] = "~" . $studentArray['grade'] . "~";
+        $studentArray['edit'] = "Edit";
+        $studentsArray[] = $studentArray;
+      }
+      return response()->json($studentsArray);
+    }
+
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getTardies()
+    {
+      $students = DB::table('students')
+                      ->selectRaw('DISTINCT students.id')
+                      ->join('events', 'students.id', '=', 'events.student_id')
+                      ->whereIn('events.event_type_id', [2])
+                      ->get();
+      $studentsArray = [];
+
+      foreach($students as $key => $stud){
+        $student = Student::find($stud->id);
+        $events = Student::find($stud->id)->event()->whereIn('event_type_id', [2])->get()->toArray();
+        $letters = $student->letters->toArray();
+        $studentArray = $student->toArray();
+        $studentArray['count'] = "*" . count($events) . "*";
+        $studentArray['event'] = $events;
+        $studentArray['letter_count'] = "-" . count($letters) . "-";
+        $studentArray['grade'] = "~" . $studentArray['grade'] . "~";
+        $studentArray['edit'] = "Edit";
+        $studentsArray[] = $studentArray;
+      }
+      return response()->json($studentsArray);
+    }
+
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getEDs()
+    {
+      $students = DB::table('students')
+                      ->selectRaw('DISTINCT students.id')
+                      ->join('events', 'students.id', '=', 'events.student_id')
+                      ->whereIn('events.event_type_id', [3])
+                      ->get();
+      $studentsArray = [];
+
+      foreach($students as $key => $stud){
+        $student = Student::find($stud->id);
+        $events = Student::find($stud->id)->event()->whereIn('event_type_id', [3])->get()->toArray();
         $letters = $student->letters->toArray();
         $studentArray = $student->toArray();
         $studentArray['count'] = "*" . count($events) . "*";

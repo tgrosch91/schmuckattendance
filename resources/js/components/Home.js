@@ -72,11 +72,20 @@ export default class Home extends Component {
       { value: 2, label: '5 Absences' },
       { value: 3, label: '7 Absences' },
       { value: 4, label: '10 Absences' },
-      { value: 5, label: '5 Tardies/Early Dismissals' },
-      { value: 6, label: '10 Tardies/Early Dismissals' },
-      { value: 7, label: '15 Tardies/Early Dismissals' },
+      { value: 5, label: '5 Tardies' },
+      { value: 6, label: '10 Tardies' },
+      { value: 7, label: '15 Tardies' },
+      { value: 10, label: '20 Tardies' },
       { value: 8, label: '3 Consecutive Absences' },
-      { value: 9, label: '10 Consecutive Absences' }
+      { value: 9, label: '10 Consecutive Absences' },
+      { value: 11, label: '5 Early Dismissals' },
+      { value: 12, label: '10 Early Dismissals' },
+      { value: 13, label: '15 Early Dismissals' },
+      { value: 14, label: '20 Early Dismissals' },
+      { value: 15, label: '5 Class Tardies' },
+      { value: 16, label: '10 Class Tardies' },
+      { value: 17, label: '15 Class Tardies' },
+      { value: 18, label: '20 Class Tardies' },
     ];
         return (
             <div className="container">
